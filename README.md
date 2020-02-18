@@ -32,7 +32,7 @@ module "EFS_FileSystem" {
 }
 
 resource "aws_route53_record" "test_efs" {
-  zone_id = "Z26WLVJV31AOV5"
+  zone_id = "Z32WLVJV333333"
   name    = "test_efs.aws.example.com"
   type    = "CNAME"
   ttl     = "60"
