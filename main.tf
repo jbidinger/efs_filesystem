@@ -43,16 +43,16 @@ resource "aws_security_group" "sg_efs" {
     name        = "sg_efs_access ${var.efs_name}"
     tags        = { Name = "sg_${var.efs_name}",
                     EFS  = var.efs_name }
-    vpc_id      = var.efs_test_vpc
+    vpc_id      = var.efs_vpc
 
     timeouts {}
 }
 
 
 resource "aws_efs_mount_target" "private_targets" {
-    count = length(var.efs_test_subnet_ids)
+    count = length(var.efs_subnet_ids)
     file_system_id = aws_efs_file_system.efs.id
-    subnet_id      = var.efs_test_subnet_ids[count.index]
+    subnet_id      = var.efs_subnet_ids[count.index]
 
     security_groups = [   aws_security_group.sg_efs.id ]
 #    tags = { Name = "efs_target ${var.efs_name}",
